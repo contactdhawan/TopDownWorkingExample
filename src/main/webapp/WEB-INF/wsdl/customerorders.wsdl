@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.contactdhawan.org/customerorders/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="customerorders"
+	targetNamespace="http://www.contactdhawan.org/customerorders/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.contactdhawan.org/customerorders/">
+			<xsd:element name="getOrders">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="customerId" type="xsd:int" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getOrdersResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="order" type="tns:order" maxOccurs="unbounded" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="createOrders">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="customerId" type="xsd:int"></xsd:element>
+						<xsd:element name="order" type="tns:order"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="createOrdersResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="result" type="xsd:boolean"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:complexType name="product">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:int"></xsd:element>
+					<xsd:element name="description" type="xsd:string"></xsd:element>
+					<xsd:element name="quantity" type="xsd:int"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="order">
+				<xsd:sequence>
+					<xsd:element name="orderId" type="xsd:int"></xsd:element>
+					<xsd:element name="product" type="tns:product"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="getOrdersRequest">
+		<wsdl:part element="tns:getOrders" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getOrdersResponse">
+		<wsdl:part element="tns:getOrdersResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="createOrdersRequest">
+		<wsdl:part name="parameters" element="tns:createOrders"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="createOrdersResponse">
+		<wsdl:part name="parameters" element="tns:createOrdersResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="customerordersporttype">
+		<wsdl:operation name="getOrders">
+			<wsdl:input message="tns:getOrdersRequest" />
+			<wsdl:output message="tns:getOrdersResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="createOrders">
+			<wsdl:input message="tns:createOrdersRequest"></wsdl:input>
+			<wsdl:output message="tns:createOrdersResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="customerordersSOAP" type="tns:customerordersporttype">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getOrders">
+			<soap:operation
+				soapAction="http://www.contactdhawan.org/customerorders/getOrders" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="customerordersservices">
+		<wsdl:port binding="tns:customerordersSOAP" name="customerordersSOAPBinding">
+			<soap:address location="http://www.localhost:8080/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

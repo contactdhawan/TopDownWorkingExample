@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="738b17fd-6baf-4c56-966d-775fc1150196" activeEnvironment="Default" name="customerOrders?wsdl" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="0b63868d-ffc6-4d73-9203-9aa458cd117e" wsaVersion="NONE" name="customerordersservicesSoapBinding" type="wsdl" bindingName="{http://www.contactdhawan.org/customerorders/}customerordersservicesSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8090/TopDownApproch2/services/customerOrders?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8090/TopDownApproch2/services/customerOrders?wsdl"><con:part><con:url>http://localhost:8090/TopDownApproch2/services/customerOrders?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="customerordersservices" targetNamespace="http://www.contactdhawan.org/customerorders/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.contactdhawan.org/customerorders/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://www.contactdhawan.org/customerorders/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="createOrders">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="customerId" type="xs:int"/>
+            <xs:element name="order" type="tns:order"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="createOrdersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getOrders">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="customerId" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getOrdersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="order" type="tns:order"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="order">
+        <xs:sequence>
+          <xs:element name="orderId" type="xs:int"/>
+          <xs:element name="product" type="tns:product"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="product">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="description" type="xs:string"/>
+          <xs:element name="quantity" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createOrders">
+    <wsdl:part element="tns:createOrders" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrdersResponse">
+    <wsdl:part element="tns:getOrdersResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrders">
+    <wsdl:part element="tns:getOrders" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOrdersResponse">
+    <wsdl:part element="tns:createOrdersResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="customerordersporttype">
+    <wsdl:operation name="getOrders">
+      <wsdl:input message="tns:getOrders" name="getOrders"></wsdl:input>
+      <wsdl:output message="tns:getOrdersResponse" name="getOrdersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createOrders">
+      <wsdl:input message="tns:createOrders" name="createOrders"></wsdl:input>
+      <wsdl:output message="tns:createOrdersResponse" name="createOrdersResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="customerordersservicesSoapBinding" type="tns:customerordersporttype">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getOrders">
+      <soap:operation soapAction="http://www.contactdhawan.org/customerorders/getOrders" style="document"/>
+      <wsdl:input name="getOrders">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getOrdersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createOrders">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createOrders">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createOrdersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="customerordersservices">
+    <wsdl:port binding="tns:customerordersservicesSoapBinding" name="customerordersimplPort">
+      <soap:address location="http://localhost:8090/TopDownApproch2/services/customerOrders"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8090/TopDownApproch2/services/customerOrders</con:endpoint></con:endpoints><con:operation id="54f26ecc-4c29-484b-87be-3796f5ccd568" isOneWay="false" action="" name="createOrders" bindingOperationName="createOrders" type="Request-Response" outputName="createOrdersResponse" inputName="createOrders" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2083e4ca-8298-49f0-9d3c-c53c585ee12b" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/TopDownApproch2/services/customerOrders</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="http://www.contactdhawan.org/customerorders/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <cus:createOrders>\r
+         <customerId>2</customerId>\r
+         <order>\r
+            <orderId>101</orderId>\r
+            <product>\r
+               <id>201</id>\r
+               <description>201desc</description>\r
+               <quantity>4</quantity>\r
+            </product>\r
+         </order>\r
+      </cus:createOrders>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.contactdhawan.org/customerorders/customerordersporttype/createOrders"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="b91e9ab5-0d54-4773-bf25-c1a9b4831ad9" isOneWay="false" action="http://www.contactdhawan.org/customerorders/getOrders" name="getOrders" bindingOperationName="getOrders" type="Request-Response" outputName="getOrdersResponse" inputName="getOrders" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3ab31e66-2028-4c94-8c87-a50703b4fcb7" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/TopDownApproch2/services/customerOrders</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="http://www.contactdhawan.org/customerorders/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <cus:getOrders>\r
+         <customerId>2</customerId>\r
+      </cus:getOrders>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.contactdhawan.org/customerorders/getOrders"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
